@@ -63,7 +63,7 @@ async function ejecutar() {
   const estado = await fetch(API + '/api/estado');
   const datosEstado = await estado.json();
   verificar('La API responde con codigo 200', estado.status === 200, 'codigo ' + estado.status);
-  verificar('El servicio se identifica correctamente', datosEstado.componente === 'nutricion-api');
+  verificar('El servicio reporta estado activo', datosEstado.estado === 'activo'); 
  
   /* ---- 2. Integracion backend <-> base de datos ---- */
   console.log('\n[2] Integracion backend - MongoDB Atlas');
