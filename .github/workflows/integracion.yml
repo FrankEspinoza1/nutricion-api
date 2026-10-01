@@ -1,0 +1,27 @@
+name: Prueba de integracion de la solucion
+ 
+# Se ejecuta al integrar cambios en main, al abrir un pull request,
+# y tambien de forma manual desde la pestana Actions.
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+ 
+jobs:
+  integracion:
+    name: Verificar la integracion de los tres componentes
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Descargar el codigo
+        uses: actions/checkout@v4
+ 
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+ 
+      - name: Ejecutar la prueba de integracion
+        run: node tests/integracion.js
